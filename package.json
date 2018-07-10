@@ -1,0 +1,32 @@
+{
+  "name": "goodreads-graphql",
+  "version": "0.1.0",
+  "description": "A GraphQL wrapper around Goodreads API",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabienfoerster/goodreads-graphql.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fabienfoerster/goodreads-graphql/issues"
+  },
+  "homepage": "https://github.com/fabienfoerster/goodreads-graphql#readme",
+  "dependencies": {
+    "apollo-server-express": "^1.3.6",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "graphql": "^0.13.2",
+    "graphql-tools": "^3.0.5",
+    "node-fetch": "^2.1.2",
+    "xml2js": "^0.4.19"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}
