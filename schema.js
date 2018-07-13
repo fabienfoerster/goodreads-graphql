@@ -43,7 +43,7 @@ const typeDefs = `
     friends_count: Int
     groups_count: Int
     reviews_count: Int
-    shelves: [Shelf]!
+    shelves: [Shelf]
   }
 
   type Book {
@@ -64,10 +64,10 @@ const typeDefs = `
     id: Int!
     name: String
     book_count: Int
-    books: [Book]!
+    books: [Book]
   }
   type Query {
-    shelves(user_id: Int): [Shelf]!
+    shelves(user_id: Int): [Shelf]
     user(id: Int): User
   }
 `;
@@ -112,14 +112,17 @@ const resolvers = {
     friends_count: parent => parseInt(parent.friends_count[0]._),
     groups_count: parent => parseInt(parent.groups_count[0]._),
     reviews_count: parent => parseInt(parent.reviews_count[0]._),
-    shelves: (parent, args) => parent.user_shelves[0].user_shelf
+    shelves: (parent, args) =>
+      parent.user_shelves[0].user_shelf.map(shelf =>
+        Object.assign(shelf, { user_id: parent.id[0] })
+      )
   },
 
   Shelf: {
     id: (root, args) => parseInt(root.id[0]._),
     name: (root, args) => root.name[0],
     book_count: (root, args) => parseInt(root.book_count[0]._),
-    books: (root, args) => fetchBookOnShelf(30830416, root.name[0])
+    books: (root, args) => fetchBookOnShelf(root.user_id, root.name[0])
   }
 };
 
